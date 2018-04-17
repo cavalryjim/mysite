@@ -3,6 +3,7 @@ from .models import Post
 from .forms import PostForm
 from django.utils import timezone
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 def post_list(request):
     posts = Post.objects.order_by('published_date')
@@ -12,10 +13,7 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
-# def post_new(request):
-#     form = PostForm()
-#     return render(request, 'blog/post_edit.html', {'form': form})
-
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
