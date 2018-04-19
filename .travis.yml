@@ -2,15 +2,15 @@ language: python
 python:
   - 3.6
 
-services: sqlite3
+services: sqlite
 
 env:
   - DJANGO_VERSION==2.0.1
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=mysite.settings
-  - export PYTHONPATH=$HOME/builds/cavalryjim/mysite
-  - export PIP_USE_MIRRORS=true
+  # - export DJANGO_SETTINGS_MODULE=mysite.settings
+  # - export PYTHONPATH=$HOME/builds/cavalryjim/mysite
+  # - export PIP_USE_MIRRORS=true
 
 install:
   - pip install -q Django==$DJANGO_VERSION
@@ -25,8 +25,6 @@ before_script:
   #- python manage.py migrate
 
 script: #python manage.py test
-  - python manage.py makemigrations
+  # - python manage.py makemigrations
   - python manage.py migrate
-  - python manage.py test mysite
-   #- python manage.py syncdb --noinput
-   #- python manage.py test
+  - python manage.py test
