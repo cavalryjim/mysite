@@ -9,5 +9,5 @@ class CreatePostTestCase(TestCase):
         client.logout()
         url = reverse('post_new')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 302)
-        #self.assertRedirects(response, "/accounts/login", status_code=302)
+        #self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, "/registration/login", status_code=302)

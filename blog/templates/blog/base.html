@@ -7,7 +7,51 @@
 {% endblock css %}
 
 {% block base_body %}
-<header>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">My Blog</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      {% if user.is_authenticated %}
+        <li class="has-dropdown">
+          <a href="#">{{ user }} </a>
+          <ul class="dropdown">
+            <li><a href="#">account</a></li>
+            <li><a href="{% url 'logout' %}" >logout</a></li>
+          </ul>
+        </li>
+      {% else %}
+        <li>
+          <a href="{% url 'login' %}" >
+            Login
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+
+    <!-- Left Nav Section -->
+    {% if user.is_authenticated %}
+      <ul class="left">
+        <li>
+          <a href="{% url 'post_new' %}" >
+            <i class="fi-plus"></i>
+            Add post
+          </a>
+        </li>
+      </ul>
+    {% endif %}
+  </section>
+</nav>
+
+
+<!-- <header>
   <div class="top-bar">
     <div class="top-bar-left">
       <h3><a href="/">My Blog</a></h3>
@@ -15,16 +59,16 @@
 
     <div class="top-bar-right">
       {% if user.is_authenticated %}
-        <div class="right">
+
           <a href="{% url 'post_new' %}" >
             <i class="fi-plus"></i>
             Add post
           </a>
-        </div>
+
       {% endif %}
     </div>
   </div>
-</header>
+</header> -->
 
   <div class="row">
     <div class="columns large-12">
